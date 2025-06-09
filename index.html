@@ -1,9 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Title</title>
-  </head>
-  <body>
-    <p>Paragraph</p>
-  </body>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Weather App, in Javascript" />
+  <meta name="keywords" content="mths, icd2o" />
+  <meta name="author" content="Kyle Matthew" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Weather App, in Javascript</title>
+</head>
+
+
+
+
+<body onload>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="js/script.js"></script>
+  <div class="container">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"></div>
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Weather App, in Javascript</span>
+      </div>
+    </header>
+    <h3 class="wather-title">Ottawa’s weather right now is... </h3>
+    <!-- Weather icon image, set by JS -->
+    <img class="Calculate" src="./images/04d@4x.png" id="weatherImage" alt="weather icon">
+    <br>
+    <!-- Div to display temperature result -->
+    <div id="result"></div>
+    <!-- Form wrapper (not used for submitting) -->
+    <form action="">
+      <!-- MDL main content area -->
+      <main class="mdl-layout__content">
+        <!-- Button to trigger weather check -->
+        <button id="click" type="button" onclick="wheaterAppBtn()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"> Check the Weather
+        </button>
+      </main>
+    </form>
+</body>
+
+
 </html>
