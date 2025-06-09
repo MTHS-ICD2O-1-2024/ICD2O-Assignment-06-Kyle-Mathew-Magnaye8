@@ -1,3 +1,4 @@
+/* global wheaterAppBtn */
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Kyle Matthew
@@ -29,7 +30,7 @@ async function wheaterAppBtn() {
     const iconUrl =
       'https://openweathermap.org/img/wn/' + iconCode + '@2x.png'
 
-    // Sets the image source in the HTML to display the weather icon
+    // Set the image source in the HTML to display the weather icon
     document.getElementById('weatherImage').src = iconUrl
 
     // Convert temperature to Celsius and display it in the result div
