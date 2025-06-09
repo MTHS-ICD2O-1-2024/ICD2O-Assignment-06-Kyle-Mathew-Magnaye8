@@ -30,7 +30,7 @@ async function wheaterAppBtn() {
     const iconUrl =
       'https://openweathermap.org/img/wn/' + iconCode + '@2x.png'
 
-    // Set the image source in the HTML to display the weather icon
+    // Sets the image source in the HTML to display the weather icon
     document.getElementById('weatherImage').src = iconUrl
 
     // Convert temperature to Celsius and display it in the result div
