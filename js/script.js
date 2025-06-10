@@ -1,43 +1,46 @@
-/* exported wheaterAppBtn */
-// Copyright (c) 2020 Mr. Coxall All rights reserved
-//
+/* exported fetchSpaceImage */
 // Created by: Kyle Matthew
-// Created on: May 20 2025
-// This file contains the JS functions for index.html
+// Created on: May 20, 2025
+// This JS fetches a random space image from NASA's APOD API
 
-'use strict' // Enforces stricter syntax rules in JavaScript
+'use strict'
 
-// Define an asynchronous function to get and display weather info
-async function wheaterAppBtn() {
+const imageContainer = document.getElementById("image-container")
+const titleEl = document.getElementById("title")
+const errorEl = document.getElementById("error")
+
+function getRandomDate() {
+  const start = new Date(2010, 0, 1) // Jan 1, 2010
+  const end = new Date()
+  const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+  return randomDate.toISOString().split("T")[0] // Format: YYYY-MM-DD
+}
+
+async function fetchSpaceImage() {
+  const date = getRandomDate()
+  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`
+
   try {
-    // Define the API URL with fixed coordinates for Ottawa and your API key
-    const url =
-      'https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=f5cce8e3a6c922f1fdf3bd14085cd28e'
+    errorEl.textContent = ""
+    imageContainer.innerHTML = "<p>Loading image...</p>"
+    titleEl.textContent = ""
 
-    // Fetch the weather data from OpenWeatherMap API
-    const result = await fetch(url)
+    const response = await fetch(apiUrl)
+    if (!response.ok) throw new Error("Could not fetch image.")
 
-    // Convert the response to JSON format
-    const jsonData = await result.json()
+    const data = await response.json()
 
-    // Extract temperature (in Kelvin) from the JSON data
-    const temp = jsonData.main.temp
-
-    // Extract the weather icon code
-    const iconCode = jsonData.weather[0].icon
-
-    // Create full URL for the weather icon
-    const iconUrl =
-      'https://openweathermap.org/img/wn/' + iconCode + '@2x.png'
-
-    // Set the image source in the HTML to display the weather icon
-    document.getElementById('weatherImage').src = iconUrl
-
-    // Convert temperature to Celsius and display it in the result div
-    document.getElementById('result').innerHTML =
-      (temp - 273.15).toFixed(0) + '°C'
+    if (data.media_type === "image") {
+      imageContainer.innerHTML = `<img src="${data.url}" alt="NASA image of the day" style="max-width: 100%; border-radius: 12px;">`
+      titleEl.textContent = data.title
+    } else {
+      throw new Error("Media type not supported (not an image).")
+    }
   } catch (error) {
-    // Print error to console if fetch or parsing fails
-    console.log(error)
+    imageContainer.innerHTML = ""
+    errorEl.textContent = "Error loading image: " + error.message
   }
 }
+
+// Load one image on page load
+window.onload = fetchSpaceImage
