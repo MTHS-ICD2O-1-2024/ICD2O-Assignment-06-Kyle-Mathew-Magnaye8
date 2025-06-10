@@ -22,7 +22,7 @@ async function fetchSpaceImage() {
 
   try {
     errorEl.textContent = ""
-    imageContainer.innerHTML = "<p>Loading image...</p>"  // ✅ Fixed this line
+    imageContainer.innerHTML = "<p>Loading image...</p>"
     titleEl.textContent = ""
 
     const response = await fetch(apiUrl)
@@ -42,5 +42,5 @@ async function fetchSpaceImage() {
   }
 }
 
-// Load one image on page load
+// Automatically load one image when the page loads
 window.onload = fetchSpaceImage
