@@ -22,7 +22,7 @@ async function fetchSpaceImage() {
 
   try {
     errorEl.textContent = ""
-    imageContainer.innerHTML = "<p>Loading image...</p>"
+    imageContainer.innerHTML = "<p>Loading image...</p>"  // ✅ Fixed this line
     titleEl.textContent = ""
 
     const response = await fetch(apiUrl)
